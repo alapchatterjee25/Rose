@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Bubbu</title>
+
+<style>
+
+body{
+background:linear-gradient(#0f172a,#020617);
+color:white;
+font-family:Arial;
+text-align:center;
+padding-top:60px;
+overflow:hidden;
+}
+
+h2{
+opacity:0.7;
+}
+
+#rose{
+font-size:26px;
+cursor:pointer;
+transition:1s;
+margin-top:30px;
+}
+
+#flower{
+font-size:60px;
+opacity:0;
+transition:1.5s;
+margin-top:20px;
+}
+
+#msg{
+margin-top:30px;
+font-size:20px;
+opacity:0;
+transition:1s;
+padding:15px;
+min-height:60px;
+}
+
+#name{
+font-size:28px;
+margin-top:20px;
+color:#ff7aa2;
+opacity:0;
+transition:2s;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Tap the seed Bubbu 🌱</h2>
+
+<div id="rose" onclick="grow()">🌱</div>
+<div id="flower">🌹</div>
+<div id="name">For Bubbu</div>
+<div id="msg"></div>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+let step=0;
+let musicStarted=false;
+
+function grow(){
+
+// start music after first tap (mobile rule)
+if(!musicStarted){
+document.getElementById("music").play();
+musicStarted=true;
+}
+
+step++;
+
+if(step==1){
+document.getElementById("rose").innerHTML="🌿";
+}
+
+else if(step==2){
+document.getElementById("rose").innerHTML="🌷";
+}
+
+else if(step==3){
+document.getElementById("flower").style.opacity="1";
+document.getElementById("rose").style.opacity="0";
+document.getElementById("name").style.opacity="1";
+setTimeout(showMessage,1200);
+}
+
+}
+
+function showMessage(){
+
+let text=[
+"2 years ago you were just a notification",
+"Then you became a habit",
+"Then my daily mood",
+"And without noticing...",
+"You became my comfort person",
+"Happy Rose Day Bubbu 🌹❤️"
+];
+
+let i=0;
+let msg=document.getElementById("msg");
+
+function typing(){
+if(i<text.length){
+msg.style.opacity="1";
+msg.innerHTML=text[i];
+i++;
+setTimeout(typing,2300);
+}
+}
+
+typing();
+}
+
+</script>
+
+</body>
+</html>
